@@ -1,0 +1,15 @@
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\bin\Debug\projeto_avaliacao_cs.exe.config
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\bin\Debug\projeto_avaliacao_cs.exe
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\bin\Debug\projeto_avaliacao_cs.pdb
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.csproj.AssemblyReference.cache
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.csproj.SuggestedBindingRedirects.cache
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.frmLogin.resources
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.Properties.Resources.resources
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.csproj.GenerateResource.cache
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.csproj.CoreCompileInputs.cache
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.exe
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.pdb
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.frmCriarUser.resources
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.frmPricipal.resources
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.frmGalo.resources
+C:\Users\rpcun\source\repos\projeto_avaliacao_cs\obj\Debug\projeto_avaliacao_cs.frmSnake.resources

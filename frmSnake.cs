@@ -23,20 +23,35 @@ namespace projeto_avaliacao_cs
         {
             InitializeComponent();
             this.KeyPreview = true;
+            //bonus
+            bonus = new PictureBox();
+            bonus.Size = new Size(10, 10);
+            bonus.Visible = true;
+            bonus.BorderStyle = BorderStyle.FixedSingle;
+            bonus.BackColor = Color.BlueViolet;
+            this.Controls.Add(bonus);
             //criar a snake e colocar fora do form
-            int posY = 50;
             for (int i = 0; i < TAMANHO; i++)
             {
                 snake[i] = new PictureBox();
+                this.Controls.Add(snake[i]);
+            }
+            resetSnake();
+        }
+
+        void resetSnake()
+        {
+            int posY = 50;
+            for (int i = 0; i < TAMANHO; i++)
+            {
                 snake[i].Size = new Size(10, 10);
                 snake[i].Visible = true;
                 snake[i].Location = new Point(900, posY);
                 snake[i].BorderStyle = BorderStyle.FixedSingle;
                 if (i == 0)
-                    snake[i].BackColor= Color.Red;
+                    snake[i].BackColor = Color.Red;
                 else
-                    snake[i].BackColor= Color.DarkGreen;
-                this.Controls.Add(snake[i]);
+                    snake[i].BackColor = Color.DarkGreen;
                 snake[i].BringToFront();
                 posY = posY + 10;
             }
@@ -44,6 +59,7 @@ namespace projeto_avaliacao_cs
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
+            resetSnake();
             //define a posição inicial e direçao
             int posX = 100;
             int comprimento = 5;
@@ -61,8 +77,8 @@ namespace projeto_avaliacao_cs
 
         async void Movimentar(int comprimento)
         {
-            int velocidade = 1000;
-            do
+            int velocidade = 100;
+            while (Perder(comprimento) == 0)
             {
                 switch (direcao)
                 {
@@ -101,24 +117,25 @@ namespace projeto_avaliacao_cs
                     default:
                         break;
                 }
-                Comer(comprimento);
-            } while (Perder() == 0);
+                comprimento = Comer(comprimento);
+            }
             MessageBox.Show("Perdeu!");
         }
 
         int Comer(int comprimento)
         {
+            if (snake[0].Left == bonus.Left && snake[0].Top == bonus.Top)
+            {
+                comprimento++;
+                PosicionarBonus(comprimento);
+                return comprimento;
+            }
             return comprimento;
         }
 
         void PosicionarBonus(int comprimento)
         {
             //criar objeto
-            bonus = new PictureBox();
-            bonus.Size = new Size(10, 10);
-            bonus.Visible = true;
-            bonus.BorderStyle = BorderStyle.FixedSingle;
-            bonus.BackColor = Color.BlueViolet;
             int posX;
             int posY;
             bool ocupado = true;
@@ -146,28 +163,33 @@ namespace projeto_avaliacao_cs
                 }
             } while (ocupado);
             bonus.Location = new Point(posX, posY);
-            lblTitulo.Text = posX.ToString() + " - " + posY.ToString();
-            this.Controls.Add(bonus);
             bonus.BringToFront();
         }
 
-        int Perder()
+        int Perder(int comprimento)
         {
-            if (snake[0].Left == picTabuleiro.Left)
+            if (snake[0].Left < picTabuleiro.Left)
             {
                 return 1;
             }
-            if (snake[0].Right == picTabuleiro.Right)
+            if (snake[0].Right > picTabuleiro.Right)
             {
                 return 1;
             }
-            if (snake[0].Top == picTabuleiro.Top)
+            if (snake[0].Top < picTabuleiro.Top)
             {
                 return 1;
             }
-            if (snake[0].Bottom == picTabuleiro.Bottom)
+            if (snake[0].Bottom > picTabuleiro.Bottom)
             {
                 return 1;
+            }
+            for (int i = 1; i < comprimento; i++)
+            {
+                if (snake[0].Top == snake[i].Top && snake[0].Left == snake[i].Left)
+                {
+                    return 1;
+                }
             }
             return 0;
         }
@@ -178,10 +200,6 @@ namespace projeto_avaliacao_cs
             this.Close();
             frmPricipal frmPricipal = new frmPricipal();
             frmPricipal.Show();
-        }
-
-        private void frmSnake_KeyPress(object sender, KeyPressEventArgs e)
-        {
         }
 
         private void frmSnake_KeyDown(object sender, KeyEventArgs e)

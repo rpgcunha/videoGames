@@ -95,7 +95,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSnake";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmSnake_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.picTabuleiro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

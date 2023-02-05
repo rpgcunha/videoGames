@@ -78,7 +78,7 @@ namespace projeto_avaliacao_cs
         async void Movimentar(int comprimento)
         {
             int velocidade = 100;
-            while (Perder(comprimento) == 0)
+            do
             {
                 switch (direcao)
                 {
@@ -118,7 +118,7 @@ namespace projeto_avaliacao_cs
                         break;
                 }
                 comprimento = Comer(comprimento);
-            }
+            } while (Perder(comprimento) == 0);
             MessageBox.Show("Perdeu!");
         }
 

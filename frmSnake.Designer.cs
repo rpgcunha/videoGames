@@ -32,6 +32,9 @@
             this.picTabuleiro = new System.Windows.Forms.PictureBox();
             this.btnNovo = new System.Windows.Forms.Button();
             this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnReiniciar = new System.Windows.Forms.Button();
+            this.lblPontosTitulo = new System.Windows.Forms.Label();
+            this.lblPontos = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picTabuleiro)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,9 +62,9 @@
             // btnNovo
             // 
             this.btnNovo.Font = new System.Drawing.Font("Zorque", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNovo.Location = new System.Drawing.Point(635, 157);
+            this.btnNovo.Location = new System.Drawing.Point(674, 294);
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(106, 60);
+            this.btnNovo.Size = new System.Drawing.Size(114, 60);
             this.btnNovo.TabIndex = 4;
             this.btnNovo.Text = "Novo Jogo";
             this.btnNovo.UseVisualStyleBackColor = true;
@@ -70,13 +73,44 @@
             // btnVoltar
             // 
             this.btnVoltar.Font = new System.Drawing.Font("Zorque", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.Location = new System.Drawing.Point(682, 403);
+            this.btnVoltar.Location = new System.Drawing.Point(674, 403);
             this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(106, 37);
+            this.btnVoltar.Size = new System.Drawing.Size(114, 37);
             this.btnVoltar.TabIndex = 5;
             this.btnVoltar.Text = "Voltar";
             this.btnVoltar.UseVisualStyleBackColor = true;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
+            // btnReiniciar
+            // 
+            this.btnReiniciar.Font = new System.Drawing.Font("Zorque", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReiniciar.Location = new System.Drawing.Point(674, 360);
+            this.btnReiniciar.Name = "btnReiniciar";
+            this.btnReiniciar.Size = new System.Drawing.Size(114, 37);
+            this.btnReiniciar.TabIndex = 6;
+            this.btnReiniciar.Text = "Reiniciar";
+            this.btnReiniciar.UseVisualStyleBackColor = true;
+            // 
+            // lblPontosTitulo
+            // 
+            this.lblPontosTitulo.AutoSize = true;
+            this.lblPontosTitulo.Font = new System.Drawing.Font("Zorque", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPontosTitulo.Location = new System.Drawing.Point(566, 95);
+            this.lblPontosTitulo.Name = "lblPontosTitulo";
+            this.lblPontosTitulo.Size = new System.Drawing.Size(116, 29);
+            this.lblPontosTitulo.TabIndex = 7;
+            this.lblPontosTitulo.Text = "Pontos:";
+            // 
+            // lblPontos
+            // 
+            this.lblPontos.AutoSize = true;
+            this.lblPontos.Font = new System.Drawing.Font("Zorque", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPontos.Location = new System.Drawing.Point(672, 95);
+            this.lblPontos.Name = "lblPontos";
+            this.lblPontos.Size = new System.Drawing.Size(116, 29);
+            this.lblPontos.TabIndex = 8;
+            this.lblPontos.Text = "Pontos:";
+            this.lblPontos.Visible = false;
             // 
             // frmSnake
             // 
@@ -84,6 +118,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.lblPontos);
+            this.Controls.Add(this.lblPontosTitulo);
+            this.Controls.Add(this.btnReiniciar);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.picTabuleiro);
@@ -107,5 +144,8 @@
         private System.Windows.Forms.PictureBox picTabuleiro;
         private System.Windows.Forms.Button btnNovo;
         private System.Windows.Forms.Button btnVoltar;
+        private System.Windows.Forms.Button btnReiniciar;
+        private System.Windows.Forms.Label lblPontosTitulo;
+        private System.Windows.Forms.Label lblPontos;
     }
 }

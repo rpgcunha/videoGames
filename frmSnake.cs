@@ -29,6 +29,7 @@ namespace projeto_avaliacao_cs
             bonus.Visible = true;
             bonus.BorderStyle = BorderStyle.FixedSingle;
             bonus.BackColor = Color.BlueViolet;
+            bonus.Location = new Point(900, 900);
             this.Controls.Add(bonus);
             //criar a snake e colocar fora do form
             for (int i = 0; i < TAMANHO; i++)
@@ -60,22 +61,23 @@ namespace projeto_avaliacao_cs
         private void btnNovo_Click(object sender, EventArgs e)
         {
             resetSnake();
-            //define a posição inicial e direçao
-            int posX = 100;
+            int pontos = 0;
             int comprimento = 5;
+            int posX = 100;
             for (int i = 0; i < 5; i++)
             {
                 snake[i].Location = new Point(posX, 100);
-                posX= posX - 10;
+                posX = posX - 10;
             }
             direcao = "direita";
+            lblPontos.Text = pontos.ToString();
+            lblPontos.Visible = true;
+            //define a posição inicial e direçao
             PosicionarBonus(comprimento);
-            Movimentar(comprimento);
+            Movimentar(comprimento, pontos);
         }
 
-
-
-        async void Movimentar(int comprimento)
+        async void Movimentar(int comprimento, int pontos)
         {
             int velocidade = 100;
             do
@@ -117,20 +119,55 @@ namespace projeto_avaliacao_cs
                     default:
                         break;
                 }
-                comprimento = Comer(comprimento);
+                if (comprimento<30)
+                {
+                    (comprimento, pontos) = Comer(comprimento, pontos);
+                }
+                else
+                {
+                    (velocidade, pontos) = SubirVelocidade(velocidade, comprimento, pontos);
+                }
+                if (velocidade == 1)
+                {
+                    MessageBox.Show("Venceu!");
+                    direcao = "";
+                }
             } while (Perder(comprimento) == 0);
             MessageBox.Show("Perdeu!");
         }
 
-        int Comer(int comprimento)
+        (int, int) SubirVelocidade(int velocidade, int comprimento, int pontos)
+        {
+            if (snake[0].Left == bonus.Left && snake[0].Top == bonus.Top)
+            {
+                if (velocidade > 10)
+                {
+                    velocidade = velocidade - 10;
+                    pontos += 10;
+                    lblPontos.Text = pontos.ToString();
+                }
+                else
+                {
+                    velocidade--;
+                    pontos += 15;
+                    lblPontos.Text = pontos.ToString();
+                }
+                PosicionarBonus(comprimento);
+                return (velocidade, pontos);
+            }
+            return (velocidade, pontos);
+        }
+        (int, int) Comer(int comprimento, int pontos)
         {
             if (snake[0].Left == bonus.Left && snake[0].Top == bonus.Top)
             {
                 comprimento++;
+                pontos += 5;
+                lblPontos.Text = pontos.ToString();
                 PosicionarBonus(comprimento);
-                return comprimento;
+                return (comprimento, pontos);
             }
-            return comprimento;
+            return (comprimento, pontos);
         }
 
         void PosicionarBonus(int comprimento)

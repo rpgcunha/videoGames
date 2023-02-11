@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -63,6 +64,25 @@ namespace projeto_avaliacao_cs
                     btnLogin.Location = new Point(posX2, posY2);
                 }
             }
+        }
+    }
+
+    public class Conecta
+    {//modificada em 2023-02-03: o membro strConn passa a ser static             //este membro é acedido diretamente pela classe e não pelo objeto (static)
+        public static string strConn = "data source = 127.0.0.1,3306;Initial Catalog = games;User Id=root;Password = ;"; 
+        public DataTable BuscarDados(string strSQL)
+        {
+            //criar uma conexão:
+            SqlConnection C = new SqlConnection(strConn);
+            C.Open();
+            //criar comando SQL para extrair os dados pretendidos:
+            SqlCommand command = C.CreateCommand();
+            command.CommandText = strSQL;                 //trazer os dados da tabela especificada para uma "tabela" em memória:
+            SqlDataAdapter da = new SqlDataAdapter(command);
+            var dt = new DataTable();
+            da.Fill(dt);                 //desligar a conexão:
+            C.Close();
+            return dt;
         }
     }
 }

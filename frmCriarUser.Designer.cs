@@ -37,7 +37,6 @@
             this.lblSenha2 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtSobrenome = new System.Windows.Forms.TextBox();
-            this.txtIdade = new System.Windows.Forms.TextBox();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.txtPass1 = new System.Windows.Forms.TextBox();
             this.txtPass2 = new System.Windows.Forms.TextBox();
@@ -51,6 +50,7 @@
             this.lblErroPass1 = new System.Windows.Forms.Label();
             this.lblErroPass2 = new System.Windows.Forms.Label();
             this.lblMarca = new System.Windows.Forms.Label();
+            this.dtpIdade = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -138,14 +138,6 @@
             this.txtSobrenome.Name = "txtSobrenome";
             this.txtSobrenome.Size = new System.Drawing.Size(157, 23);
             this.txtSobrenome.TabIndex = 8;
-            // 
-            // txtIdade
-            // 
-            this.txtIdade.Font = new System.Drawing.Font("Zorque", 9.749999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdade.Location = new System.Drawing.Point(185, 139);
-            this.txtIdade.Name = "txtIdade";
-            this.txtIdade.Size = new System.Drawing.Size(157, 23);
-            this.txtIdade.TabIndex = 9;
             // 
             // txtUser
             // 
@@ -288,11 +280,22 @@
             this.lblMarca.TabIndex = 22;
             this.lblMarca.Text = "Rui Cunha ®";
             // 
+            // dtpIdade
+            // 
+            this.dtpIdade.CalendarFont = new System.Drawing.Font("Zorque", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpIdade.Font = new System.Drawing.Font("Zorque", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpIdade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpIdade.Location = new System.Drawing.Point(185, 140);
+            this.dtpIdade.Name = "dtpIdade";
+            this.dtpIdade.Size = new System.Drawing.Size(157, 21);
+            this.dtpIdade.TabIndex = 23;
+            // 
             // frmCriarUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(457, 450);
+            this.Controls.Add(this.dtpIdade);
             this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.lblErroPass2);
             this.Controls.Add(this.lblErroPass1);
@@ -306,7 +309,6 @@
             this.Controls.Add(this.txtPass2);
             this.Controls.Add(this.txtPass1);
             this.Controls.Add(this.txtUser);
-            this.Controls.Add(this.txtIdade);
             this.Controls.Add(this.txtSobrenome);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.lblSenha2);
@@ -337,7 +339,6 @@
         private System.Windows.Forms.Label lblSenha2;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtSobrenome;
-        private System.Windows.Forms.TextBox txtIdade;
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.TextBox txtPass1;
         private System.Windows.Forms.TextBox txtPass2;
@@ -351,5 +352,6 @@
         private System.Windows.Forms.Label lblErroPass1;
         private System.Windows.Forms.Label lblErroPass2;
         private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.DateTimePicker dtpIdade;
     }
 }

@@ -13,6 +13,10 @@ namespace projeto_avaliacao_cs
 {
     public partial class frmLogin : Form
     {
+        public static string strConn = "data source = localhost\\SQLEXPRESS;Initial Catalog = games;User Id=admin;Password = 123.Abc;";
+
+        public string utilizador;
+
         public frmLogin()
         {
             InitializeComponent();
@@ -20,7 +24,7 @@ namespace projeto_avaliacao_cs
 
         private void lblPass_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -42,6 +46,21 @@ namespace projeto_avaliacao_cs
             if (txtUser.Text!=string.Empty && txtPass.Text!=string.Empty)
             {
                 //verificar se o user existe
+                SqlConnection C = new SqlConnection(strConn);
+                C.Open();
+                //criar comando SQL para extrair os dados pretendidos:
+                SqlCommand command = C.CreateCommand();
+                command.CommandText = "select pass from dbo.utilizador where nick = '" + txtUser.Text + "'";                 //trazer os dados da tabela especificada para uma "tabela" em memória:
+                string password = (string)command.ExecuteScalar();
+                C.Close();
+                if (password != txtPass.Text)
+                {
+                    MessageBox.Show("Username ou password incorretos!");
+                    txtPass.Text = string.Empty;
+                    return;
+                }
+                utilizador = txtUser.Text;
+
                 //verificar se a pass esta correta
                 this.Hide();
                 frmPricipal frmPricipal=new frmPricipal();
@@ -64,25 +83,6 @@ namespace projeto_avaliacao_cs
                     btnLogin.Location = new Point(posX2, posY2);
                 }
             }
-        }
-    }
-
-    public class Conecta
-    {//modificada em 2023-02-03: o membro strConn passa a ser static             //este membro é acedido diretamente pela classe e não pelo objeto (static)
-        public static string strConn = "data source = 127.0.0.1,3306;Initial Catalog = games;User Id=root;Password = ;"; 
-        public DataTable BuscarDados(string strSQL)
-        {
-            //criar uma conexão:
-            SqlConnection C = new SqlConnection(strConn);
-            C.Open();
-            //criar comando SQL para extrair os dados pretendidos:
-            SqlCommand command = C.CreateCommand();
-            command.CommandText = strSQL;                 //trazer os dados da tabela especificada para uma "tabela" em memória:
-            SqlDataAdapter da = new SqlDataAdapter(command);
-            var dt = new DataTable();
-            da.Fill(dt);                 //desligar a conexão:
-            C.Close();
-            return dt;
         }
     }
 }

@@ -14,6 +14,8 @@ namespace projeto_avaliacao_cs
 {
     public partial class frmCriarUser : Form
     {
+        string strConn = "data source = localhost\\SQLEXPRESS;Initial Catalog = games;User Id=admin;Password = 123.Abc;";
+
         public frmCriarUser()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace projeto_avaliacao_cs
 
         private void btnCriar_Click(object sender, EventArgs e)
         {
+
             //verifica se existe alguma textbox vazia
             if (txtNome.Text==string.Empty || txtSobrenome.Text==string.Empty || dtpIdade.Text==string.Empty || txtUser.Text==string.Empty || txtPass1.Text==string.Empty||txtPass2.Text==string.Empty)
             {
@@ -100,6 +103,18 @@ namespace projeto_avaliacao_cs
             else
             {
                 //verificar se utilizador ja existe na bd
+                SqlConnection C = new SqlConnection(strConn);
+                C.Open();
+                //criar comando SQL para extrair os dados pretendidos:
+                SqlCommand command = C.CreateCommand();
+                command.CommandText = "select count(*) from dbo.utilizador where nick = '" + txtUser.Text + "'";                 //trazer os dados da tabela especificada para uma "tabela" em memória:
+                int count = (int)command.ExecuteScalar();
+                C.Close();
+                if (count != 0)
+                {
+                    MessageBox.Show("Esse username já existe, tente um diferente!");
+                    return;
+                }
 
                 //verifica se a pass tem tamanho de no minimo 6 char
                 if (txtPass1.Text.Length<6)
@@ -116,23 +131,22 @@ namespace projeto_avaliacao_cs
                     txtPass1.Text = string.Empty;
                     txtPass2.Text = string.Empty;
                     return;
-                }               
+                }
 
                 //criar utilizador na base de dados
-                //string strConn = "data source = 127.0.0.1:3306;Initial Catalog = games;User Id=root;";
-                //string strSQL = "insert into utilizador (nome, sobrenome, idade, nick, pass) VALUES (@nome, @sobrenome, @idade, @nick, @pass)";
-                //SqlConnection C = new SqlConnection(strConn);
-                //C.Open();
-                //SqlCommand command = new SqlCommand(strSQL, C);
-                //command.Parameters.AddWithValue("@nome", txtNome.Text);
-                //command.Parameters.AddWithValue("@sobrenome", txtSobrenome.Text);
-                //command.Parameters.AddWithValue("@idade", dtpIdade.Text);
-                //command.Parameters.AddWithValue("@nick", txtUser.Text);
-                //command.Parameters.AddWithValue("@pass", txtPass1.Text);
-                //command.ExecuteNonQuery();
-                //C.Close();
+                string strSQL = "insert into utilizador (nome, sobrenome, idade, nick, pass) VALUES (@nome, @sobrenome, @idade, @nick, @pass)";
+                C.Open();
+                command = new SqlCommand(strSQL, C);
+                command.Parameters.AddWithValue("@nome", txtNome.Text);
+                command.Parameters.AddWithValue("@sobrenome", txtSobrenome.Text);
+                command.Parameters.AddWithValue("@idade", dtpIdade.Text);
+                command.Parameters.AddWithValue("@nick", txtUser.Text);
+                command.Parameters.AddWithValue("@pass", txtPass1.Text);
+                command.ExecuteNonQuery();
+                C.Close();
 
                 //apresentar mensagem de user criado com sucesso
+                MessageBox.Show("Criado utilizador com sucesso!");
 
                 //fecha o form e volta ao form de login
                 this.Close();

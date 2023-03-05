@@ -19,6 +19,8 @@ namespace projeto_avaliacao_cs
         PictureBox[] snake = new PictureBox[TAMANHO];
         PictureBox bonus = new PictureBox();
 
+        frmLogin f = new frmLogin();
+
         public frmSnake()
         {
             InitializeComponent();
@@ -130,6 +132,7 @@ namespace projeto_avaliacao_cs
                 if (velocidade == 1)
                 {
                     MessageBox.Show("Venceu!");
+                    
                     direcao = "";
                 }
             } while (Perder(comprimento) == 0);
